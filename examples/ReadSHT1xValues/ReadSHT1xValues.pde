@@ -23,9 +23,9 @@ void setup()
 
 void loop()
 {
-  float temp_c;
-  float temp_f;
-  float humidity;
+  sht1x_value temp_c;
+  sht1x_value temp_f;
+  sht1x_value humidity;
 
   // Read values from the sensor
   temp_c = sht1x.readTemperatureC();
@@ -34,11 +34,17 @@ void loop()
 
   // Print the values to the serial port
   Serial.print("Temperature: ");
-  Serial.print(temp_c, DEC);
+  Serial.print(sht1x_value_get_integer_part(temp_c), DEC);
+  Serial.print('.');
+  Serial.print(sht1x_value_get_fract_part(temp_c, 8), DEC);
   Serial.print("C / ");
-  Serial.print(temp_f, DEC);
+  Serial.print(sht1x_value_get_integer_part(temp_f), DEC);
+  Serial.print('.');
+  Serial.print(sht1x_value_get_fract_part(temp_f, 8), DEC);
   Serial.print("F. Humidity: ");
-  Serial.print(humidity);
+  Serial.print(sht1x_value_get_integer_part(humidity), DEC);
+  Serial.print('.');
+  Serial.print(sht1x_value_get_fract_part(humidity, 8), DEC);
   Serial.println("%");
 
   delay(2000);
