@@ -55,8 +55,8 @@ sht1x_value SHT1x::readTemperatureF()
   sht1x_value _temperature;  // Temperature derived from raw value
 
   // Conversion coefficients from SHT15 datasheet
-  static const sht1x_value D1 = sht1x_value_make(-40.0);  // for 14 Bit @ 5V
-  static const sht1x_value D2 = sht1x_value_make(0.018);  // for 14 Bit DEGF
+  static const sht1x_value D1 = sht1x_value_make(-40.1);  // for 14 Bit @ 5V
+  static const sht1x_value D2 = sht1x_value_make(0.01);   // for 14 Bit DEGC
 
   // Fetch raw value
   _val = readTemperatureRaw();
@@ -108,7 +108,6 @@ sht1x_value SHT1x::readHumidity()
 
   return (_correctedHumidity);
 }
-
 
 /* ================  Private methods ================ */
 

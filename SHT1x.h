@@ -21,9 +21,9 @@
 #define SHT1X_USE_FIXED_POINT 1
 
 #if SHT1X_USE_FIXED_POINT
-typedef long sht1x_value;
+typedef signed long sht1x_value;
 
-#define sht1x_fixed_fract        24
+#define sht1x_fixed_fract        21
 #define sht1x_fixed_fract_mask   ((((long)1) << sht1x_fixed_fract)-1)
 
 #define sht1x_value_make(x)               ((long)((float)(x)*(sht1x_fixed_fract_mask+1)))
@@ -33,7 +33,7 @@ unsigned long sht1x_value_get_fract_part(sht1x_value x, byte precision);
 #define sht1x_value_add(x,y)    ((x) + (y))
 #define sht1x_value_sub(x,y)    ((x) - (y))
 #define sht1x_value_mul(x,y)    (((long long)(x) * (long long)(y)) >> sht1x_fixed_fract)
-#define sht1x_value_div(x,y)    (((long long)(x) << sht1x_fixed_fract) / (y))
+#define sht1x_value_div(x,y)    (((x) << sht1x_fixed_fract) / (y))
 
 #define sht1x_value_to_float(x) ((float)((x) >> sht1x_fixed_fract) + (float)((x) & sht1x_fixed_fract_mask) / (float)(1+sht1x_fixed_fract_mask))
 
